@@ -1,11 +1,13 @@
-import { NavSection, NavLink, NavContainer } from './MainNav.style';
+import { NavSection, StyledNavLink, NavContainer } from './MainNav.style';
 
 export function MainNav() {
   return (
     <NavContainer>
       <NavSection>
-        <NavLink>Home</NavLink>
-        <NavLink>Movie</NavLink>
+        <StyledNavLink to="/" exact>
+          Home
+        </StyledNavLink>
+        <StyledNavLink to="/movies">Movie</StyledNavLink>
       </NavSection>
     </NavContainer>
   );
