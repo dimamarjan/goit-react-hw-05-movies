@@ -28,7 +28,6 @@ export function FindSection() {
 
   useEffect(() => {
     if (findingData) {
-      console.log(`useEffect`, 'ok');
       getFilmByName(findingData).then(resp => {
         setFilmsList(resp.data.results);
       });
