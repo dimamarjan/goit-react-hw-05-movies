@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, useRouteMatch } from 'react-router-dom';
+import { useParams, Link, useRouteMatch, useLocation } from 'react-router-dom';
 import { getFilmById } from 'utils/getFilmsData';
 
 import {
@@ -16,9 +16,17 @@ export function FilmMainView() {
   const [filmCardData, setFilmCardData] = useState(null);
   const { filmId } = useParams();
   const { url } = useRouteMatch();
+  const location = useLocation();
+
+  // const goBackHandle = (e) => {
+
+
+
+  // };
 
   useEffect(() => {
     getFilmById(filmId).then(movieResp => setFilmCardData(movieResp.data));
+    return () => { };
   }, [filmId]);
 
   return (

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { getFilmsData } from 'utils/getFilmsData';
 import {
   ContentSection,
@@ -9,6 +9,7 @@ import {
 
 export function MainContainer() {
   const [filmsData, setFilmsData] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     getFilmsData().then(response => {
@@ -22,7 +23,7 @@ export function MainContainer() {
         {filmsData.map(film => {
           return (
             <MovieListItem key={film.id}>
-              <Link to={`/movies/${film.id}`}>{film.original_title}</Link>
+              <Link to={{ pathname: `/movies/${film.id}`, state: { from: location } }}>{film.original_title}</Link>
             </MovieListItem>
           );
         })}
