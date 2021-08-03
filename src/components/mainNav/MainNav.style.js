@@ -12,6 +12,7 @@ export const NavSection = styled.div`
   width: fit-content;
   height: 50px;
   margin-left: 50px;
+  margin-bottom: 10px;
 `;
 
 export const StyledNavLink = styled(NavLink)`

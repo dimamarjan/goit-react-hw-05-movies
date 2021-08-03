@@ -16,8 +16,6 @@ export function MainContainer() {
     });
   }, []);
 
-  console.log(`filmsData`, filmsData);
-
   return (
     <ContentSection>
       <MovieList>

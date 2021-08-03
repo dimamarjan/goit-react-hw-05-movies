@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ContentSection = styled.div`
-  padding: 35px;
+  padding-left: 35px;
 `;
 
 export const MovieList = styled.ul`

@@ -4,6 +4,7 @@ import { getFilmById } from 'utils/getFilmsData';
 
 import {
   SectionWrapper,
+  BackButton,
   MainFilmLogo,
   MainFilmHeader,
   TextContent,
@@ -23,6 +24,7 @@ export function FilmMainView() {
   return (
     filmCardData && (
       <>
+        <BackButton>← Go back</BackButton>
         <SectionWrapper className="movie-card">
           <MainFilmLogo
             src={`https://image.tmdb.org/t/p/w500${filmCardData.poster_path}`}

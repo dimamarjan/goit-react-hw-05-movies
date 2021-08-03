@@ -14,6 +14,10 @@ export const SectionWrapper = styled.div`
   }
 `;
 
+export const BackButton = styled.button`
+  margin-bottom: 10px;
+`;
+
 export const MainFilmLogo = styled.img`
   width: 320px;
 `;

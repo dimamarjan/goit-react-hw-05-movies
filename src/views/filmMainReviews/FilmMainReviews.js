@@ -11,26 +11,23 @@ import {
 } from 'views/filmMainReviews/FilmMainReviews.style';
 
 export function FilmMainReviews() {
-  const [filmReviews, setFilmReviews] = useState([]);
+  const [filmReviews, setFilmReviews] = useState(null);
   const [showFilmsList, setShowFilmsList] = useState(false);
   const [showNoReviews, setShowNoReviews] = useState(false);
   const { filmId } = useParams();
 
   useEffect(() => {
-    getFilmReviews(filmId).then(reviewsResponse =>
-      setFilmReviews(reviewsResponse.data.results),
-    );
+    getFilmReviews(filmId).then(reviewsResponse => {
+      const recData = reviewsResponse.data.results;
+      if (recData.length === 0) {
+        setShowNoReviews(true);
+        return;
+      } else {
+        setFilmReviews(recData);
+        setShowFilmsList(true);
+      }
+    });
   }, [filmId]);
-
-  useEffect(() => {
-    if (filmReviews.length !== 0) {
-      setShowNoReviews(false);
-      setShowFilmsList(true);
-    } else {
-      setShowFilmsList(false);
-      setShowNoReviews(true);
-    }
-  }, [filmReviews.length, showNoReviews]);
 
   return (
     <>
