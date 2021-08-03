@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-
 import { useParams } from 'react-router-dom';
 
 import { getFilmReviews } from 'utils/getFilmsData';
@@ -12,7 +11,9 @@ import {
 } from 'views/filmMainReviews/FilmMainReviews.style';
 
 export function FilmMainReviews() {
-  const [filmReviews, setFilmReviews] = useState(null);
+  const [filmReviews, setFilmReviews] = useState([]);
+  const [showFilmsList, setShowFilmsList] = useState(false);
+  const [showNoReviews, setShowNoReviews] = useState(false);
   const { filmId } = useParams();
 
   useEffect(() => {
@@ -21,9 +22,19 @@ export function FilmMainReviews() {
     );
   }, [filmId]);
 
+  useEffect(() => {
+    if (filmReviews.length !== 0) {
+      setShowNoReviews(false);
+      setShowFilmsList(true);
+    } else {
+      setShowFilmsList(false);
+      setShowNoReviews(true);
+    }
+  }, [filmReviews.length, showNoReviews]);
+
   return (
     <>
-      {filmReviews &&
+      {showFilmsList &&
         filmReviews.map(review => {
           return (
             <ReviewsContainer key={review.id}>
@@ -34,6 +45,11 @@ export function FilmMainReviews() {
             </ReviewsContainer>
           );
         })}
+      {showNoReviews && (
+        <ReviewsContainer className="no-reviews">
+          We don't have any reviews for this movie.
+        </ReviewsContainer>
+      )}
     </>
   );
 }
