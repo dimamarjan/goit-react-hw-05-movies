@@ -12,3 +12,19 @@ export function getFilmByName(filmName) {
     `${BASE_URL}search/movie?api_key=${KEY}&language=en-US&query=${filmName}&page=1&include_adult=false`,
   );
 }
+
+export function getFilmById(filmId) {
+  return axios.get(`${BASE_URL}movie/${filmId}?api_key=${KEY}&language=en-US`);
+}
+
+export function getFilmCredits(filmId) {
+  return axios.get(
+    `${BASE_URL}movie/${filmId}/credits?api_key=${KEY}&language=en-US`,
+  );
+}
+
+export function getFilmReviews(filmId) {
+  return axios.get(
+    `${BASE_URL}movie/${filmId}/reviews?api_key=${KEY}&language=en-US&page=1`,
+  );
+}

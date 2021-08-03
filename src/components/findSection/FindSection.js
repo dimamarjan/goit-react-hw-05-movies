@@ -45,9 +45,9 @@ export function FindSection() {
       </FindForm>
       {showFilms && (
         <FilmList>
-          {filmsList.map(item => (
-            <FilmListItem key={item.id}>
-              <Link to={`${url}/${item.id}`}>{item.original_title}</Link>
+          {filmsList.map(film => (
+            <FilmListItem key={film.id}>
+              <Link to={`${url}/${film.id}`}>{film.original_title}</Link>
             </FilmListItem>
           ))}
         </FilmList>

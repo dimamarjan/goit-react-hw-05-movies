@@ -24,7 +24,7 @@ export function MainContainer() {
         {filmsData.map(film => {
           return (
             <MovieListItem key={film.id}>
-              <Link to={`/${film.id}`}>{film.original_title}</Link>
+              <Link to={`/movies/${film.id}`}>{film.original_title}</Link>
             </MovieListItem>
           );
         })}

@@ -2,8 +2,6 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 export const NavContainer = styled.nav`
-  position: fixed;
-  top: 0;
   width: 100%;
   box-shadow: 0px 3px 2px 1px rgba(0, 0, 255, 0.15);
 `;
