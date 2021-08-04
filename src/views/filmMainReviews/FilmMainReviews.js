@@ -10,7 +10,7 @@ import {
   ReviewsText,
 } from 'views/filmMainReviews/FilmMainReviews.style';
 
-export function FilmMainReviews() {
+function FilmMainReviews() {
   const [filmReviews, setFilmReviews] = useState(null);
   const [showFilmsList, setShowFilmsList] = useState(false);
   const [showNoReviews, setShowNoReviews] = useState(false);
@@ -50,3 +50,5 @@ export function FilmMainReviews() {
     </>
   );
 }
+
+export default FilmMainReviews;

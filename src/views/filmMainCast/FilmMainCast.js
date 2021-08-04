@@ -14,7 +14,7 @@ import {
 import { getFilmCredits } from 'utils/getFilmsData';
 
 
-export function FilmMainCast() {
+function FilmMainCast() {
   const [movieCast, setMovieCast] = useState(null);
   const { filmId } = useParams();
 
@@ -46,3 +46,5 @@ export function FilmMainCast() {
     </>
   );
 }
+
+export default FilmMainCast;

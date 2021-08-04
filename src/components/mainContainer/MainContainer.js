@@ -7,7 +7,7 @@ import {
   MovieListItem,
 } from './MainContainer.style';
 
-export function MainContainer() {
+function MainContainer() {
   const [filmsData, setFilmsData] = useState([]);
   const location = useLocation();
 
@@ -31,3 +31,5 @@ export function MainContainer() {
     </ContentSection>
   );
 }
+
+export default MainContainer;

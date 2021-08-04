@@ -12,7 +12,7 @@ import {
 
 import { getFilmByName } from 'utils/getFilmsData';
 
-export function FindSection() {
+function FindSection() {
   const [findingData, setFindingData] = useState("");
   const [filmsList, setFilmsList] = useState([]);
   const [showFilms, setShowFilms] = useState(false);
@@ -73,3 +73,5 @@ export function FindSection() {
     </FormContainer>
   );
 }
+
+export default FindSection;

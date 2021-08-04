@@ -14,7 +14,7 @@ import {
   SectionListItem,
 } from 'views/filmMainView/FilmMainView.style';
 
-export function FilmMainView() {
+function FilmMainView() {
   const [filmCardData, setFilmCardData] = useState(null);
   const [currentLocation, setCurrentLocation] = useState();
   const [queryHistory, setQueryHistory] = useState();
@@ -98,3 +98,5 @@ export function FilmMainView() {
     )
   );
 }
+
+export default FilmMainView;
