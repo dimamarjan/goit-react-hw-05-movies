@@ -26,7 +26,7 @@ export function FilmMainReviews() {
         setFilmReviews(recData);
         setShowFilmsList(true);
       }
-    });
+    }).catch(err => err);
   }, [filmId]);
 
   return (

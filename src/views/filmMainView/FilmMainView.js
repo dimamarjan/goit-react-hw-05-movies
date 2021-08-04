@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, useRouteMatch, useLocation } from 'react-router-dom';
+import { useParams, Link, useRouteMatch, useLocation, useHistory } from 'react-router-dom';
 import { getFilmById } from 'utils/getFilmsData';
 
 import {
@@ -14,27 +14,52 @@ import {
 
 export function FilmMainView() {
   const [filmCardData, setFilmCardData] = useState(null);
+  const [currentLocation, setCurrentLocation] = useState();
+  const [queryHistory, setQueryHistory] = useState();
+  const [historyState, setHistoryState] = useState();
   const { filmId } = useParams();
   const { url } = useRouteMatch();
   const location = useLocation();
-
-  // const goBackHandle = (e) => {
-
+  const history = useHistory();
 
 
-  // };
+  const onGoBackHandle = () => {
+    if (currentLocation) {
+      history.push({ pathname: currentLocation, search: queryHistory, state: historyState });
+    } else {
+      history.push(`/`);
+    }
+  };
 
   useEffect(() => {
-    getFilmById(filmId).then(movieResp => setFilmCardData(movieResp.data));
+    const locationUrl = location?.state?.from?.pathname;
+    const searchQuery = location?.state?.from?.search;
+    const locationHistoryState = location.state;
+    if (locationUrl) {
+      setCurrentLocation(locationUrl);
+    };
+    if (searchQuery) {
+      setQueryHistory(searchQuery);
+    };
+    if (locationHistoryState) {
+      setHistoryState(locationHistoryState);
+    }
+  }, [location.state, location.state?.from?.pathname, location.state?.from?.search])
+
+  useEffect(() => {
+    getFilmById(filmId).then(movieResp => setFilmCardData(movieResp.data)).catch(err => err);
     return () => { };
   }, [filmId]);
+
 
   return (
     filmCardData && (
       <>
-        <BackButton>← Go back</BackButton>
+        <BackButton onClick={onGoBackHandle}>← Go back</BackButton>
         <SectionWrapper className="movie-card">
           <MainFilmLogo
+            width="320px"
+            height="480px"
             src={`https://image.tmdb.org/t/p/w500${filmCardData.poster_path}`}
             alt={`${filmCardData.original_title} poster`}
           />

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
 
 import {
   FormContainer,
@@ -17,12 +17,15 @@ export function FindSection() {
   const [filmsList, setFilmsList] = useState([]);
   const [showFilms, setShowFilms] = useState(false);
   const { url } = useRouteMatch();
+  const location = useLocation();
+  const history = useHistory();
 
   const onSubmitHeandler = e => {
     e.preventDefault();
     const inputData = e.target.elements.filmName.value;
     if (inputData) {
       setFindingData(inputData);
+      history.push(`?q=${inputData}`)
     }
   };
 
@@ -37,6 +40,12 @@ export function FindSection() {
     }
   }, [filmsList.length, findingData, showFilms.length]);
 
+  useEffect(() => {
+    if (location?.state?.query) {
+      setFindingData(location.state.query);
+    };
+  }, [location.state?.query]);
+
   return (
     <FormContainer>
       <FindForm onSubmit={onSubmitHeandler}>
@@ -47,7 +56,7 @@ export function FindSection() {
         <FilmList>
           {filmsList.map(film => (
             <FilmListItem key={film.id}>
-              <Link to={`${url}/${film.id}`}>{film.original_title}</Link>
+              <Link to={{ pathname: `${url}/${film.id}`, state: { from: location, query: findingData } }}>{film.original_title}</Link>
             </FilmListItem>
           ))}
         </FilmList>

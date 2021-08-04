@@ -13,6 +13,7 @@ import {
 
 import { getFilmCredits } from 'utils/getFilmsData';
 
+
 export function FilmMainCast() {
   const [movieCast, setMovieCast] = useState(null);
   const { filmId } = useParams();
@@ -20,7 +21,7 @@ export function FilmMainCast() {
   useEffect(() => {
     getFilmCredits(filmId).then(castResponse =>
       setMovieCast(castResponse.data.cast),
-    );
+    ).catch(err => err);
   }, [filmId]);
 
   return (
