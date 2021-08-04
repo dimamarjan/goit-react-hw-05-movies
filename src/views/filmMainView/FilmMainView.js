@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams, Link, useRouteMatch, useLocation, useHistory } from 'react-router-dom';
 import { getFilmById } from 'utils/getFilmsData';
 
+import noPosterImage from "images/noPoster.jpg"
+
 import {
   SectionWrapper,
   BackButton,
@@ -62,6 +64,7 @@ export function FilmMainView() {
             height="480px"
             src={`https://image.tmdb.org/t/p/w500${filmCardData.poster_path}`}
             alt={`${filmCardData.original_title} poster`}
+            onError={({ target }) => (target.src = noPosterImage)}
           />
           <SectionWrapper className="description-section">
             <MainFilmHeader>{filmCardData.original_title}</MainFilmHeader>
