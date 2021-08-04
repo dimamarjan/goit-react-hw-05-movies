@@ -22,14 +22,16 @@ function App() {
           </Route>
           <Route path="/movies/:filmId">
             <FilmMainView />
-            <Switch>
-              <Route path="/movies/:filmId/cast">
-                <FilmMainCast />
-              </Route>
-              <Route path="/movies/:filmId/reviews">
-                <FilmMainReviews />
-              </Route>
-            </Switch>
+            <Suspense fallback={<p>Loading</p>}>
+              <Switch>
+                <Route path="/movies/:filmId/cast">
+                  <FilmMainCast />
+                </Route>
+                <Route path="/movies/:filmId/reviews">
+                  <FilmMainReviews />
+                </Route>
+              </Switch>
+            </Suspense>
           </Route>
         </Switch>
       </Suspense>
