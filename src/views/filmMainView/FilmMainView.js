@@ -3,6 +3,7 @@ import { useParams, Link, useRouteMatch, useLocation, useHistory } from 'react-r
 import { getFilmById } from 'utils/getFilmsData';
 
 import noPosterImage from "images/noPoster.jpg"
+import loadingImage from "images/loadingImage.gif"
 
 import {
   SectionWrapper,
@@ -59,13 +60,16 @@ function FilmMainView() {
       <>
         <BackButton onClick={onGoBackHandle}>← Go back</BackButton>
         <SectionWrapper className="movie-card">
+
           <MainFilmLogo
             width="320px"
             height="480px"
-            src={`https://image.tmdb.org/t/p/w500${filmCardData.poster_path}`}
+            src={loadingImage}
             alt={`${filmCardData.original_title} poster`}
+            onLoad={({ target }) => (target.src = `https://image.tmdb.org/t/p/w500${filmCardData.poster_path}`)}
             onError={({ target }) => (target.src = noPosterImage)}
           />
+
           <SectionWrapper className="description-section">
             <MainFilmHeader>{filmCardData.original_title}</MainFilmHeader>
             <TextContent>User Score: {filmCardData.popularity}%</TextContent>
